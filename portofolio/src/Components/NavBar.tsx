@@ -1,10 +1,11 @@
-import React, { useState, useEffect, type JSX } from 'react';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, ChevronDown, Star, type LucideIcon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, ChevronDown, Star } from 'lucide-react';
+import fitnessImg from'../assets/fitness.png';
 
 interface Skill {
   name: string;
   level: number;
-  icon: LucideIcon;
+  icon: React.ComponentType<any>;
 }
 
 interface Project {
@@ -30,7 +31,7 @@ interface VisibilityState {
   [key: string]: boolean;
 }
 
-export default function Portfolio(): JSX.Element {
+export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>('home');
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
@@ -46,41 +47,41 @@ export default function Portfolio(): JSX.Element {
 
   const projects: Project[] = [
     {
-      title: 'E-commerce Mobile App',
-      description: 'Cross-platform mobile app built with Flutter and Node.js backend',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop',
-      tech: ['Flutter', 'Dart', 'Node.js', 'Firebase'],
-      github: 'https://github.com/zahrawm/your-ecommerce-repo',
-      live: 'https://your-ecommerce-demo.com'
+      title: 'E-commerce Website',
+      description: 'An ecommerce website with MERN STACK',
+      image: 'fitnessImg',
+      tech: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Tailwind CSS'],
+      github: 'https://github.com/zahrawm/woo--ecommerce-website',
+      live: 'https://woo-ecommerce-website-frontend.vercel.app/'
     },
     {
-      title: 'Task Management Web App',
-      description: 'Responsive web application with real-time collaboration features',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=250&fit=crop',
-      tech: ['React', 'Firebase', 'Material-UI', 'WebSocket'],
-      github: 'https://github.com/zahrawm/task-management-app',
-      live: 'https://your-task-app.netlify.app'
+      title: 'Gym Guide Fitness App',
+      description: 'A fitness app that guides users through workouts',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
+      tech: ['Flutter', 'Dart', 'Firebase', 'Material Design'],
+      github: 'https://github.com/zahrawm/gym-guide-app',
+      live: 'https://github.com/zahrawm/gym-guide-app'
     },
     {
-      title: 'Health Tracker App',
-      description: 'Flutter-based mobile app for health monitoring and fitness tracking',
+      title: 'Bolt-Ride Sharing App',
+      description: 'Flutter-based mobile app for rides',
       image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop',
       tech: ['Flutter', 'Dart', 'Firebase', 'REST API'],
-      github: 'https://github.com/zahrawm/health-tracker-flutter',
-      live: 'https://play.google.com/store/apps/details?id=com.yourapp'
+      github: 'https://github.com/zahrawm/Bolt-app',
+      live: 'https://github.com/zahrawm/Bolt-app'
     }
   ];
 
   useEffect(() => {
-    const handleScroll = (): void => {
-      const sections: string[] = ['home', 'about', 'skills', 'projects', 'contact'];
-      const scrollPosition: number = window.scrollY + 100;
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100;
 
-      sections.forEach((section: string) => {
-        const element: HTMLElement | null = document.getElementById(section);
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
         if (element) {
-          const offsetTop: number = element.offsetTop;
-          const offsetBottom: number = offsetTop + element.offsetHeight;
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
           
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
             setActiveSection(section);
@@ -94,7 +95,7 @@ export default function Portfolio(): JSX.Element {
   }, []);
 
   const scrollToSection = (sectionId: string): void => {
-    const element: HTMLElement | null = document.getElementById(sectionId);
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -109,7 +110,8 @@ export default function Portfolio(): JSX.Element {
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2">
         <div 
-          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-full"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000 ease-out"
+          style={{ width: `${skill.level}%` }}
         />
       </div>
     </div>
@@ -117,11 +119,19 @@ export default function Portfolio(): JSX.Element {
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-48">
         <img 
-          src={project.image} 
+          src={fitnessImg}
           alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+          style={{ 
+            minHeight: '192px',
+            maxHeight: '192px'
+          }}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop';
+          }}
         />
         <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
           <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 flex space-x-4">
@@ -148,7 +158,7 @@ export default function Portfolio(): JSX.Element {
         <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
         <p className="text-gray-600 mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2">
-          {project.tech.map((tech: string, techIndex: number) => (
+          {project.tech.map((tech, techIndex) => (
             <span key={techIndex} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
               {tech}
             </span>
@@ -164,7 +174,7 @@ export default function Portfolio(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Navigation */}
+      
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -172,9 +182,9 @@ export default function Portfolio(): JSX.Element {
               Portfolio
             </div>
             
-            {/* Desktop Navigation */}
+           
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'projects', 'contact'].map((section: string) => (
+              {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -187,7 +197,7 @@ export default function Portfolio(): JSX.Element {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
+           
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden text-gray-700 hover:text-blue-600"
@@ -197,11 +207,11 @@ export default function Portfolio(): JSX.Element {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {['home', 'about', 'skills', 'projects', 'contact'].map((section: string) => (
+              {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -316,7 +326,7 @@ export default function Portfolio(): JSX.Element {
                   </div>
                   <div className="text-center">
                     <div className="flex justify-center mb-2">
-                      {[...Array(5)].map((_, i: number) => (
+                      {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
@@ -339,7 +349,7 @@ export default function Portfolio(): JSX.Element {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-8">Technical Skills</h3>
-              {skills.map((skill: Skill, index: number) => (
+              {skills.map((skill, index) => (
                 <SkillBar key={skill.name} skill={skill} index={index} />
               ))}
             </div>
@@ -376,7 +386,7 @@ export default function Portfolio(): JSX.Element {
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project: Project, index: number) => (
+            {projects.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
           </div>
@@ -433,7 +443,7 @@ export default function Portfolio(): JSX.Element {
                     <textarea
                       placeholder="Your Message"
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-all resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none"
                     />
                   </div>
                   <button
