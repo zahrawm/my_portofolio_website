@@ -85,21 +85,28 @@ export default function Portfolio() {
   };
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform  ">
-      <div className=""> 
-        <img 
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105 "
-          style={{ 
-            minHeight: '192px',
-            maxHeight: '192px'
-          }}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop';
-          }}
-        />
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform">
+      <div className="relative"> 
+        <a 
+          href={project.live} 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block cursor-pointer"
+        >
+          <img 
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+            style={{ 
+              minHeight: '192px',
+              maxHeight: '192px'
+            }}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop';
+            }}
+          />
+        </a>
         <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
           <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 flex space-x-4">
             <a 
