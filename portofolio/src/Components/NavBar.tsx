@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, ChevronDown, Star } from 'lucide-react';
 import fitnessImg from'../assets/fitness.png';
+import ecommerceImg from '../assets/ecommerce.png';
+import flutterImg from '../assets/flutter.png';
 
 interface Skill {
   name: string;
@@ -11,7 +13,7 @@ interface Skill {
 interface Project {
   title: string;
   description: string;
-  image: string;
+  image: string | any; 
   tech: string[];
   github: string;
   live: string;
@@ -49,7 +51,7 @@ export default function Portfolio() {
     {
       title: 'E-commerce Website',
       description: 'An ecommerce website with MERN STACK',
-      image: 'fitnessImg',
+      image: ecommerceImg,
       tech: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Tailwind CSS'],
       github: 'https://github.com/zahrawm/woo--ecommerce-website',
       live: 'https://woo-ecommerce-website-frontend.vercel.app/'
@@ -57,7 +59,7 @@ export default function Portfolio() {
     {
       title: 'Gym Guide Fitness App',
       description: 'A fitness app that guides users through workouts',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop',
+      image: fitnessImg,
       tech: ['Flutter', 'Dart', 'Firebase', 'Material Design'],
       github: 'https://github.com/zahrawm/gym-guide-app',
       live: 'https://github.com/zahrawm/gym-guide-app'
@@ -65,7 +67,7 @@ export default function Portfolio() {
     {
       title: 'Bolt-Ride Sharing App',
       description: 'Flutter-based mobile app for rides',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop',
+      image: flutterImg,
       tech: ['Flutter', 'Dart', 'Firebase', 'REST API'],
       github: 'https://github.com/zahrawm/Bolt-app',
       live: 'https://github.com/zahrawm/Bolt-app'
@@ -121,7 +123,7 @@ export default function Portfolio() {
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
       <div className="relative overflow-hidden h-48">
         <img 
-          src={fitnessImg}
+          src={project.image}
           alt={project.title}
           className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
           style={{ 
@@ -225,7 +227,7 @@ export default function Portfolio() {
         )}
       </nav>
 
-      {/* Hero Section */}
+      
       <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
