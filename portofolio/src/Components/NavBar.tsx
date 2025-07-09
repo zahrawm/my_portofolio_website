@@ -120,12 +120,12 @@ export default function Portfolio() {
   );
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-      <div className="relative overflow-hidden h-48">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform  ">
+      <div className=""> 
         <img 
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105 "
           style={{ 
             minHeight: '192px',
             maxHeight: '192px'
