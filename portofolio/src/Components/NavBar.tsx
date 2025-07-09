@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, ChevronDown, Star } from 'lucide-react';
 import fitnessImg from'../assets/fitness.png';
 import ecommerceImg from '../assets/ecommerce.png';
-import flutterImg from '../assets/flutter.png';
-
-interface Skill {
-  name: string;
-  level: number;
-  icon: React.ComponentType<any>;
-}
+import rideImg from '../assets/ride.png';
 
 interface Project {
   title: string;
@@ -17,11 +11,6 @@ interface Project {
   tech: string[];
   github: string;
   live: string;
-}
-
-interface SkillBarProps {
-  skill: Skill;
-  index: number;
 }
 
 interface ProjectCardProps {
@@ -37,15 +26,6 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>('home');
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
-
-  const skills: Skill[] = [
-    { name: 'Flutter', level: 90, icon: Code },
-    { name: 'Dart', level: 85, icon: Code },
-    { name: 'JavaScript', level: 88, icon: Code },
-    { name: 'React', level: 85, icon: Code },
-    { name: 'Node.js', level: 80, icon: Database },
-    { name: 'Mobile Development', level: 92, icon: Code }
-  ];
 
   const projects: Project[] = [
     {
@@ -67,7 +47,7 @@ export default function Portfolio() {
     {
       title: 'Bolt-Ride Sharing App',
       description: 'Flutter-based mobile app for rides',
-      image: flutterImg,
+      image: rideImg,
       tech: ['Flutter', 'Dart', 'Firebase', 'REST API'],
       github: 'https://github.com/zahrawm/Bolt-app',
       live: 'https://github.com/zahrawm/Bolt-app'
@@ -103,21 +83,6 @@ export default function Portfolio() {
     }
     setIsMenuOpen(false);
   };
-
-  const SkillBar: React.FC<SkillBarProps> = ({ skill, index }) => (
-    <div className="mb-6">
-      <div className="flex items-center mb-2">
-        <skill.icon className="w-5 h-5 mr-2 text-blue-600" />
-        <span className="text-gray-700 font-medium">{skill.name}</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2">
-        <div 
-          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${skill.level}%` }}
-        />
-      </div>
-    </div>
-  );
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform  ">
@@ -175,7 +140,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-white">
       
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -228,8 +193,8 @@ export default function Portfolio() {
       </nav>
 
       
-      <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
+     
+      <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-white">
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <div className="mb-8">
             <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
@@ -266,8 +231,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+     
+      <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
@@ -351,9 +316,32 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-8">Technical Skills</h3>
-              {skills.map((skill, index) => (
-                <SkillBar key={skill.name} skill={skill} index={index} />
-              ))}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">Flutter</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">Dart</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">JavaScript</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">React</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Database className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">Node.js</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm text-center">
+                  <Code className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                  <h4 className="font-semibold text-gray-800">Mobile Dev</h4>
+                </div>
+              </div>
             </div>
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-8">What I Do</h3>
