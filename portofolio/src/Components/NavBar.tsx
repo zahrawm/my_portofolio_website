@@ -86,7 +86,7 @@ export default function Portfolio() {
 
   const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform">
-      <div className="relative"> 
+      <div className=""> 
         <a 
           href={project.live} 
           target="_blank"
@@ -237,7 +237,6 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
-
      
       <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
