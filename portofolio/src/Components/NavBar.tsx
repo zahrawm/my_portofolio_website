@@ -201,7 +201,7 @@ export default function Portfolio() {
 
       
      
-      <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-white">
+      <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#ffffff' }}>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <div className="mb-8">
             <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
@@ -290,7 +290,7 @@ export default function Portfolio() {
                     <div className="text-sm opacity-90">Projects Completed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold mb-2">2+</div>
+                    <div className="text-3xl font-bold mb-2">2</div>
                     <div className="text-sm opacity-90">Years Experience</div>
                   </div>
                   <div className="text-center">
